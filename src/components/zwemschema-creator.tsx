@@ -75,6 +75,7 @@ export function ZwemschemaCreatorComponent() {
 
   const prompt = useMemo(
     () => createPrompt(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       skillLevel,
       focusTechnique,
@@ -88,11 +89,11 @@ export function ZwemschemaCreatorComponent() {
   );
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
+    <Card className="w-full max-w-2xl mx-auto print:max-w-none print:border-none">
+      <CardHeader className="print:hidden">
         <CardTitle>Zwemschema Creator</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 print:hidden">
         <div className="space-y-2">
           <Label>Vaardigheidsniveau</Label>
           <RadioGroup

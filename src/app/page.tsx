@@ -9,7 +9,7 @@ export default function Home() {
 
       <main className="flex-grow px-4 mb-6">
         <ZwemschemaCreatorComponent />
-        <p className="text-sm text-gray-500 mt-4">
+        <p className="text-sm text-center text-gray-500 mt-4">
           Deze applicatie maakt gebruik van OpenAI met model GPT-4o.
         </p>
       </main>

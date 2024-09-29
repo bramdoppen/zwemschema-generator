@@ -4,6 +4,7 @@ import { streamObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { createStreamableValue } from "ai/rsc";
 import { z } from "zod";
+import { incrementGenerations, hasReachedLimit } from "@/lib/userLimits";
 
 const workoutSchema = z.object({
   sections: z.array(
@@ -28,6 +29,12 @@ const workoutSchema = z.object({
 });
 
 export async function generate(prompt: string) {
+  if (await hasReachedLimit()) {
+    throw new Error("U heeft de limiet van 20 gegenereerde schema's bereikt.");
+  }
+
+  await incrementGenerations();
+
   const stream = createStreamableValue();
 
   (async () => {

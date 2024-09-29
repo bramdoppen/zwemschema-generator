@@ -19,21 +19,36 @@ interface Workout {
 
 export default function GenereerTraining({ prompt }: { prompt: string }) {
   const [workout, setWorkout] = useState<Partial<Workout>>({});
+  const [error, setError] = useState<string | null>(null);
+
+  const handleGenerateWorkout = async () => {
+    try {
+      setError(null);
+      const { workout } = await generate(prompt);
+
+      for await (const partialWorkout of readStreamableValue(workout)) {
+        setWorkout(partialWorkout);
+      }
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError("Er is een onbekende fout opgetreden.");
+      }
+    }
+  };
 
   return (
     <div>
       <Button
-        className="w-full"
-        onClick={async () => {
-          const { workout } = await generate(prompt);
-
-          for await (const partialWorkout of readStreamableValue(workout)) {
-            setWorkout(partialWorkout);
-          }
-        }}
+        className="w-full print:hidden"
+        onClick={handleGenerateWorkout}
+        disabled={!!error}
       >
         Genereer training
       </Button>
+
+      {error && <p className="mt-4 text-red-500">{error}</p>}
 
       {workout.difficulty && (
         <p className="mt-4">Moeilijkheidsgraad: {workout.difficulty}</p>
