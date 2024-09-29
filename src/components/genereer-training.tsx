@@ -58,15 +58,16 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
       >
         Genereer training
       </Button>
-
       {error && <p className="mt-4 text-red-500">{error}</p>}
 
-      {workout.difficulty && (
-        <p className="mt-4">Moeilijkheidsgraad: {workout.difficulty}</p>
-      )}
-      {workout.totalDistance && (
-        <p>Totale duur: {workout.totalDistance} minuten</p>
-      )}
+      <p className="mt-4">
+        {workout.difficulty && (
+          <span>Niveau workout: {workout.difficulty}</span>
+        )}
+        {workout.totalDistance && (
+          <span>Totale afstand: {workout.totalDistance} meter</span>
+        )}
+      </p>
 
       <div className="mt-4 space-y-4">
         {workout.sections?.map((section, index) => (
