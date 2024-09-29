@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zwemtraining Generator
 
-## Getting Started
+## Beschrijving
 
-First, run the development server:
+Dit project is een zwemtraining generator die gebruikmaakt van AI om gepersonaliseerde zwemschema's te creëren op basis van gebruikersinput. Het genereert gestructureerde trainingsplannen met verschillende secties, oefeningen en afstanden.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Functies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Genereer aangepaste zwemtrainingen
+- Specificeer moeilijkheidsgraad en totale afstand
+- Ontvang gedetailleerde trainingsschema's met warming-up, hoofdsets en cooling-down
+- Realtime streaming van gegenereerde trainingen
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologieën
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js
+- React
+- TypeScript
+- OpenAI API
+- Tailwind CSS
 
-## Learn More
+## Installatie
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone de repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   git clone https://github.com/jouw-gebruikersnaam/zwemtraining-generator.git
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Installeer de dependencies:
 
-## Deploy on Vercel
+   ```
+   cd zwemtraining-generator
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Maak een `.env.local` bestand aan in de root van het project en voeg je OpenAI API-sleutel toe:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```
+   OPENAI_API_KEY=jouw_api_sleutel_hier
+   ```
+
+4. Start de ontwikkelingsserver:
+
+   ```
+   npm run dev
+   ```
+
+5. Open `http://localhost:3000` in je browser om de applicatie te gebruiken.
+
+## Gebruik
+
+1. Voer je gewenste trainingsparameters in (bijv. afstand, moeilijkheidsgraad, specifieke oefeningen).
+2. Klik op de "Genereer training" knop.
+3. Wacht terwijl de AI je gepersonaliseerde zwemtraining genereert.
+4. Bekijk en gebruik het gegenereerde trainingsschema.
+
+## Bijdragen
+
+Bijdragen aan dit project zijn welkom. Volg deze stappen om bij te dragen:
+
+1. Fork het project
+2. Maak een feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit je wijzigingen (`git commit -m 'Voeg een geweldige feature toe'`)
+4. Push naar de branch (`git push origin feature/AmazingFeature`)
+5. Open een Pull Request
+
+## Licentie
+
+Dit project is gelicentieerd onder de MIT-licentie. Zie het `LICENSE` bestand voor details.
+
+## Contact
+
+Jouw Naam - jouw.email@voorbeeld.com
+
+Project Link: [https://github.com/jouw-gebruikersnaam/zwemtraining-generator](https://github.com/jouw-gebruikersnaam/zwemtraining-generator)
