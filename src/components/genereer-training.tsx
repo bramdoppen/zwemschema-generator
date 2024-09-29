@@ -59,7 +59,10 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
 
       <div className="mt-4 space-y-4">
         {workout.sections?.map((section, index) => (
-          <div key={index} className="bg-gray-100 rounded-md p-4">
+          <div
+            key={index}
+            className="bg-gray-100 rounded-md p-4 print:bg-gray-100"
+          >
             <h3 className="font-bold mb-2">{section.title}</h3>
             <p>Afstand: {section.distance} meters</p>
             <ul className="list-disc pl-5 mt-2">

@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Zwemtraining Generator",
+  title: "Zwemtraining Generator - Met liefde gemaakt door Bram",
   description: "Genereer gepersonaliseerde zwemtrainingen met behulp van AI",
 };
 
