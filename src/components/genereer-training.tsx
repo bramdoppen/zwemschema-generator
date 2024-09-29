@@ -74,7 +74,11 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
       {error && (
         <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
           <p className="font-bold">Fout:</p>
-          <p>{error}</p>
+          <p>
+            Er kan geen training worden gegenereerd. Probeer het later opnieuw.
+            Je mag 10 trainingen per dag genereren. Mogelijk is dat aantal
+            overschreven.
+          </p>
         </div>
       )}
 
