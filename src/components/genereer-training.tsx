@@ -22,21 +22,32 @@ interface Workout {
 export default function GenereerTraining({ prompt }: { prompt: string }) {
   const [workout, setWorkout] = useState<Partial<Workout>>({});
   const [error, setError] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGenerateWorkout = async () => {
+    setIsGenerating(true);
+    setError(null);
+    setWorkout({});
+
     try {
-      setError(null);
       const { workout } = await generate(prompt);
 
       for await (const partialWorkout of readStreamableValue(workout)) {
         setWorkout(partialWorkout);
       }
     } catch (e) {
+      console.error("Fout bij het genereren van de training:", e);
       if (e instanceof Error) {
         setError(e.message);
+      } else if (typeof e === "string") {
+        setError(e);
       } else {
-        setError("Er is een onbekende fout opgetreden.");
+        setError(
+          "Er is een onbekende fout opgetreden bij het genereren van de training."
+        );
       }
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -55,11 +66,18 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
           });
           handleGenerateWorkout();
         }}
-        disabled={!!error}
+        disabled={isGenerating}
       >
-        Genereer training
+        {isGenerating ? "Bezig met genereren..." : "Genereer training"}
       </Button>
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+
+      {error && (
+        <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          <p className="font-bold">Fout:</p>
+          <p>{error}</p>
+        </div>
+      )}
+
       {workout.difficulty || workout.totalDistance ? (
         <p className="mt-4">
           {workout.difficulty && (
@@ -96,14 +114,16 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
             </ul>
           </div>
         ))}
-        <div className="mt-4 flex justify-center print:hidden">
-          <Button
-            onClick={() => window.print()}
-            className="bg-blue-500 text-white p-2 rounded plausible-event-name=PrintTraining+Click"
-          >
-            Print de training
-          </Button>
-        </div>
+        {workout?.sections && workout.sections.length > 0 && (
+          <div className="mt-4 flex justify-center print:hidden">
+            <Button
+              onClick={() => window.print()}
+              className="bg-blue-500 text-white p-2 rounded plausible-event-name=PrintTraining+Click"
+            >
+              Print de training
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
