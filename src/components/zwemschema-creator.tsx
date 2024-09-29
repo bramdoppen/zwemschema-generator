@@ -58,7 +58,7 @@ export function ZwemschemaCreatorComponent() {
     }.
     
     Structuur:
-    1. INZWEMMEN (5-10 min): Korte oefening (bijv. 200m borst, 100m rug, 100m school of 100m wisselslag).
+    1. INZWEMMEN (5-10 min): Korte warmup oefening (gebruik alleen de geselecteerde slagen).
     2. KERN 1 (20-25 min): ${
       focusTechnique === "normal" ? "Techniek/conditie" : focusTechnique
     } focus, intervallen met rusttijden.
@@ -67,13 +67,13 @@ export function ZwemschemaCreatorComponent() {
 
     Geef bij een techniek oefening ook beknopt aan hoe je deze moet uitvoeren.
     
-    Genereer NOOIT school, borst, rug, vlinder als die niet in de slagverdeling zijn opgenomen.
-    Maak optioneel gebruik van wisselslag als de gebruiker ook vlinderslag heeft geselecteerd. Wisselslag is minimaal 100 meter en bestaat uit 25m vlinder, 25m rug, 25m school, 25m borst, in die volgorde. Nooit meer dan 200m wisselslag achter elkaar.
+    BELANGRIJK: Gebruik ALLEEN de slagen die in de slagverdeling zijn opgenomen. Als een slag niet in de verdeling staat, mag deze ABSOLUUT NIET in het schema voorkomen.
+    Als de gebruiker alle slagen geselecteerd heeft mag je optioneel gebruik maken van wisselslag. Wisselslag is minimaal 100 meter en bestaat alleen uit de geselecteerde slagen, in de volgorde: vlinder (indien geselecteerd), rug (indien geselecteerd), school (indien geselecteerd), borst (indien geselecteerd). Nooit meer dan 200m wisselslag achter elkaar.
     
     Slagverdeling: ${slagVerdeling}.
     Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.
     
-    Regels: Max 50m vlinder, wissel min 100m. Gebruik wisselslag waar nodig.
+    Regels: Max 50m vlinder achter elkaar.
     ${additionalFocus ? `Extra: ${additionalFocus}` : ""}
     Totaal exact ${trainingDistance}m.
     Geef bij elke oefening de exacte afstand en rusttijd in seconden aan.`;
