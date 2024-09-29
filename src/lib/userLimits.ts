@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-const MAX_GENERATIONS = 30;
+const MAX_GENERATIONS = 10;
 const COOKIE_NAME = "schema_generations";
 
 export async function incrementGenerations(): Promise<number> {

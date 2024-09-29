@@ -10,6 +10,7 @@ interface WorkoutSection {
   title: string;
   content: string[];
   distance: number;
+  goal?: string;
 }
 
 interface Workout {
@@ -42,7 +43,7 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
   return (
     <div>
       <Button
-        className="w-full print:hidden"
+        className="w-full print:hidden plausible-event-name=GenerateTraining+Click"
         onClick={() => {
           track("GenereerTraining", {
             userAgent: navigator.userAgent,
@@ -59,16 +60,17 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
         Genereer training
       </Button>
       {error && <p className="mt-4 text-red-500">{error}</p>}
-
-      <p className="mt-4">
-        {workout.difficulty && (
-          <span>Niveau workout: {workout.difficulty}</span>
-        )}
-        {" | "}
-        {workout.totalDistance && (
-          <span>Totale afstand: {workout.totalDistance} meter</span>
-        )}
-      </p>
+      {workout.difficulty || workout.totalDistance ? (
+        <p className="mt-4">
+          {workout.difficulty && (
+            <span>Niveau workout: {workout.difficulty}</span>
+          )}
+          {" | "}
+          {workout.totalDistance && (
+            <span>Totale afstand: {workout.totalDistance}m</span>
+          )}
+        </p>
+      ) : null}
 
       <div className="mt-4 space-y-4">
         {workout.sections?.map((section, index) => (
@@ -76,8 +78,17 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
             key={index}
             className="bg-gray-100 rounded-md p-4 print:bg-gray-100"
           >
-            <h3 className="font-bold mb-2">{section.title}</h3>
-            <p>Afstand: {section.distance} meters</p>
+            <h3 className="font-bold mb-2 flex justify-between">
+              {section.title}
+              <span className="text-sm text-gray-600">
+                {" "}
+                Afstand: {section.distance}m
+              </span>
+            </h3>
+
+            {section.goal && (
+              <p className="text-sm text-gray-600">Doel: {section.goal}</p>
+            )}
             <ul className="list-disc pl-5 mt-2">
               {section.content?.map((item, itemIndex) => (
                 <li key={itemIndex}>{item}</li>
@@ -85,6 +96,14 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
             </ul>
           </div>
         ))}
+        <div className="mt-4 flex justify-center print:hidden">
+          <Button
+            onClick={() => window.print()}
+            className="bg-blue-500 text-white p-2 rounded plausible-event-name=PrintTraining+Click"
+          >
+            Print de training
+          </Button>
+        </div>
       </div>
     </div>
   );
