@@ -4,6 +4,7 @@ import { useState } from "react";
 import { readStreamableValue } from "ai/rsc";
 import { generate } from "@/app/actions/generate";
 import { Button } from "./ui/button";
+import { track } from "@vercel/analytics/react";
 
 interface WorkoutSection {
   title: string;
@@ -42,7 +43,17 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
     <div>
       <Button
         className="w-full print:hidden"
-        onClick={handleGenerateWorkout}
+        onClick={() => {
+          track("GenereerTraining", {
+            userAgent: navigator.userAgent,
+            promptLengte: prompt.length,
+            schermBreedte: window.innerWidth,
+            schermHoogte: window.innerHeight,
+            taal: navigator.language,
+            tijdstip: new Date().toISOString(),
+          });
+          handleGenerateWorkout();
+        }}
         disabled={!!error}
       >
         Genereer training
