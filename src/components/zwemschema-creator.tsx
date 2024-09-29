@@ -58,14 +58,17 @@ export function ZwemschemaCreatorComponent() {
     }.
     
     Structuur:
-    1. INZWEMMEN (5-10 min): Korte oefening (bijv. 200m borst, 100m rug, 100m school of 100m wissel).
+    1. INZWEMMEN (5-10 min): Korte oefening (bijv. 200m borst, 100m rug, 100m school of 100m wisselslag).
     2. KERN 1 (20-25 min): ${
       focusTechnique === "normal" ? "Techniek/conditie" : focusTechnique
     } focus, intervallen met rusttijden.
     3. KERN 2 (20-25 min): Afwisseling slagen, intensiteit naar doel.
-    4. UITZWEMMEN (5-10 min): Rustige oefening. Nooit wissel of vlinder.
+    4. UITZWEMMEN (5-10 min): Rustige oefening. Tijdens uitzwemmen geen wisselslag of vlinderslag.
 
     Geef bij een techniek oefening ook beknopt aan hoe je deze moet uitvoeren.
+    
+    Genereer NOOIT school, borst, rug, vlinder als die niet in de slagverdeling zijn opgenomen.
+    Maak optioneel gebruik van wisselslag als de gebruiker ook vlinderslag heeft geselecteerd.
     
     Slagverdeling: ${slagVerdeling}.
     Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.
