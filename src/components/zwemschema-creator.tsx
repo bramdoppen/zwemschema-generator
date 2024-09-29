@@ -24,7 +24,7 @@ import GenereerTraining from "./genereer-training";
 export function ZwemschemaCreatorComponent() {
   const [skillLevel, setSkillLevel] = useState("beginner");
   const [focusTechnique, setFocusTechnique] = useState("normal");
-  const [schoolslag, setSchoolslag] = useState("light ");
+  const [schoolslag, setSchoolslag] = useState("light");
   const [rug, setRug] = useState("light");
   const [borst, setBorst] = useState("light");
   const [vlinder, setVlinder] = useState("light");
@@ -66,6 +66,7 @@ export function ZwemschemaCreatorComponent() {
     4. UITZWEMMEN (5-10 min): Rustige oefening. Nooit wissel of vlinder.
     
     Slagverdeling: ${slagVerdeling}.
+    Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.
     
     Regels: Max 50m vlinder, wissel min 100m. Gebruik wisselslag waar nodig.
     ${additionalFocus ? `Extra: ${additionalFocus}` : ""}
