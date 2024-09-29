@@ -68,7 +68,7 @@ export function ZwemschemaCreatorComponent() {
     Geef bij een techniek oefening ook beknopt aan hoe je deze moet uitvoeren.
     
     Genereer NOOIT school, borst, rug, vlinder als die niet in de slagverdeling zijn opgenomen.
-    Maak optioneel gebruik van wisselslag als de gebruiker ook vlinderslag heeft geselecteerd.
+    Maak optioneel gebruik van wisselslag als de gebruiker ook vlinderslag heeft geselecteerd. Wisselslag is minimaal 100 meter en bestaat uit 25m vlinder, 25m rug, 25m school, 25m borst, in die volgorde. Nooit meer dan 200m wisselslag achter elkaar.
     
     Slagverdeling: ${slagVerdeling}.
     Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.

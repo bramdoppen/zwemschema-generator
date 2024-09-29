@@ -64,6 +64,7 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
         {workout.difficulty && (
           <span>Niveau workout: {workout.difficulty}</span>
         )}
+        {" | "}
         {workout.totalDistance && (
           <span>Totale afstand: {workout.totalDistance} meter</span>
         )}
