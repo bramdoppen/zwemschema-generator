@@ -64,6 +64,8 @@ export function ZwemschemaCreatorComponent() {
     } focus, intervallen met rusttijden.
     3. KERN 2 (20-25 min): Afwisseling slagen, intensiteit naar doel.
     4. UITZWEMMEN (5-10 min): Rustige oefening. Nooit wissel of vlinder.
+
+    Geef bij een techniek oefening ook beknopt aan hoe je deze moet uitvoeren.
     
     Slagverdeling: ${slagVerdeling}.
     Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.
