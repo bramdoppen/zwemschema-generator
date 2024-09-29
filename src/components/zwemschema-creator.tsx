@@ -40,9 +40,11 @@ export function ZwemschemaCreatorComponent() {
     };
 
     const slagVerdeling = Object.entries(slagPercentages)
-      .filter(([, percentage]) => percentage !== "")
-      .map(([slag, percentage]) => `${slag}: ${percentage}%`)
+      .filter(([, value]) => value !== "" && value !== "none")
+      .map(([slag, value]) => `${slag}: ${value}`)
       .join(", ");
+
+    console.log(slagPercentages);
 
     return `Genereer als zwemcoach een ${trainingDistance}m training voor een ${
       skillLevel === "beginner" ? "beginnende" : "gevorderde"
@@ -63,19 +65,34 @@ export function ZwemschemaCreatorComponent() {
       focusTechnique === "normal" ? "Techniek/conditie" : focusTechnique
     } focus, intervallen met rusttijden.
     3. KERN 2 (20-25 min): Afwisseling slagen, intensiteit naar doel.
-    4. UITZWEMMEN (5-10 min): Rustige oefening. Tijdens uitzwemmen geen wisselslag of vlinderslag.
+    4. UITZWEMMEN (5-10 min): Rustige oefening. 
 
     Geef bij een techniek oefening ook beknopt aan hoe je deze moet uitvoeren.
-    
-    BELANGRIJK: Gebruik ALLEEN de slagen die in de slagverdeling zijn opgenomen. Als een slag niet in de verdeling staat, mag deze ABSOLUUT NIET in het schema voorkomen.
-    Als de gebruiker alle slagen geselecteerd heeft mag je optioneel gebruik maken van wisselslag. Wisselslag is minimaal 100 meter en bestaat alleen uit de geselecteerde slagen, in de volgorde: vlinder (indien geselecteerd), rug (indien geselecteerd), school (indien geselecteerd), borst (indien geselecteerd). Nooit meer dan 200m wisselslag achter elkaar.
-    
+
+
     Slagverdeling: ${slagVerdeling}.
+    ${
+      schoolslag !== "none" &&
+      rug !== "none" &&
+      borst !== "none" &&
+      vlinder !== "none"
+        ? `Je mag optioneel gebruik maken van wisselslag. Wisselslag is minimaal 100 meter en bestaat alleen uit de geselecteerde slagen, in de volgorde: vlinder, rug, school, borst. Nooit meer dan 200m wisselslag achter elkaar. Nooit wisselslag tijdens uitzwemmen.`
+        : ""
+    }
+   
+    ${
+      vlinder !== "none"
+        ? `Regels: Max 50m vlinder achter elkaar. Tijdens uitzwemmen nooit vlinderslag.`
+        : ""
+    }
+    BELANGRIJK: Gebruik ALLEEN de slagen die in de slagverdeling zijn opgenomen. Als een slag niet in de verdeling staat, mag deze ABSOLUUT NIET in het schema voorkomen.
     Ga altijd uit van een 25m bad, tenzij anders aangegeven door de gebruiker.
-    
-    Regels: Max 50m vlinder achter elkaar.
+  
     ${additionalFocus ? `Extra: ${additionalFocus}` : ""}
     Totaal exact ${trainingDistance}m.
+    
+    Let op: Als een slag de waarde 'none' heeft, mag deze absoluut niet in het schema voorkomen.
+    Zorg ervoor dat de slagverdeling klopt met de intensiteiten die bij de slagen staan.
     Geef bij elke oefening de exacte afstand en rusttijd in seconden aan.`;
   };
 
