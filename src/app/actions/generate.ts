@@ -1,5 +1,7 @@
 "use server";
 
+export const maxDuration = 30;
+
 import { streamObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { createStreamableValue } from "ai/rsc";
