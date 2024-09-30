@@ -207,7 +207,14 @@ export function ZwemschemaCreatorComponent() {
             id="training-distance"
             placeholder="Voer de gewenste afstand in meters in"
             value={trainingDistance}
-            onChange={(e) => setTrainingDistance(Number(e.target.value))}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              if (value <= 5000) {
+                setTrainingDistance(value);
+              }
+            }}
+            max={5000}
+            step={25}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -219,6 +226,7 @@ export function ZwemschemaCreatorComponent() {
             placeholder="Waar wil je extra op focussen tijdens deze training?"
             value={additionalFocus}
             onChange={(e) => setAdditionalFocus(e.target.value)}
+            maxLength={150}
           />
         </div>
       </CardContent>
