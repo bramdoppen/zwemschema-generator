@@ -45,20 +45,20 @@ export function ZwemschemaCreatorComponent() {
         if (slag === "vlinderslag" && value === "light") {
           return `${slag}: 5%`;
         }
-        return `${slag}: ${value}`;
+        return `${slag} met een intensiteit '${value}'`;
       })
       .join(", ");
 
-    return `Genereer als zwemcoach een training met een **totale lengte van exact ${trainingDistance} meter** voor een ${
+    return `Neem de rol aan van professionele zwemcoach en genereer een training met een **totale lengte van exact ${trainingDistance} meter** voor een ${
       skillLevel === "beginner" ? "beginnende" : "gevorderde"
     } zwemmer. De focus van de training ligt op ${
       focusTechnique === "normal"
         ? "algemeen"
         : focusTechnique === "endurance"
-        ? "uithoudingsvermogen. Bijpassende oefeningen: pyramide (50, 100, 150, 100, 50) (binnen pyramide altijd zelfde slag), langzame, langere afstanden, rustig tempo"
+        ? `uithoudingsvermogen. Bijpassende oefeningen zijn bijvoorbeeld een pyramide van afstanden (binnen pyramide altijd zelfde slag), langzame, langere afstanden, rustig tempo. Genereer ideeen voor oefeningen bijpassend bij een techniektraining voor ${slagVerdeling}. Wees creatief met de oefeningen en de uitvoering. Geef bij elke oefening een doel en uitvoering. Alleen slagen die genoemd zijn in de slagverdeling mogen voorkomen in de training.`
         : focusTechnique === "speed"
-        ? "snelheid. Bijpassende oefeningen: sprinten, korte intervallen met hoog intensiteit, je eigen tijd verbeteren"
-        : `techniek. Bijpassende oefeningen: techniek oefenen voor de slagen ${slagVerdeling}, slagen verbeteren door het oefenen van details, werken aan keerpunten, werken aan de timing van de slagen, oefeningen als 'schouder aantikken op heenweg`
+        ? `snelheid. Bijpassende oefeningen zijn bijvoorbeeld: sprinten, korte intervallen met hoog intensiteit, je eigen tijd verbeteren. Genereer ideeen voor oefeningen bijpassend bij een techniektraining voor ${slagVerdeling}. Wees creatief met de oefeningen en de uitvoering. Geef bij elke oefening een doel en uitvoering. Alleen slagen die genoemd zijn in de slagverdeling mogen voorkomen in de training.`
+        : `techniek. Genereer ideeen voor oefeningen bijpassend bij een techniektraining voor ${slagVerdeling}. Wees creatief met de oefeningen en de uitvoering. Geef bij elke oefening een doel en uitvoering. Alleen slagen die genoemd zijn in de slagverdeling mogen voorkomen in de training.`
     }. Integreer deze focus in elke oefening van de training.
       
       **Belangrijk**:
@@ -67,16 +67,17 @@ export function ZwemschemaCreatorComponent() {
       - Houd rekening met de intensiteit van de slagen bij het opstellen van de training.
       
       **Structuur van de training**:
-      1. **Inzwemmen** (suggestie: ongeveer 15-20% van de totale afstand): Korte warming-up oefeningen van de slagen die gebruikt worden in ${slagVerdeling}, zonder vlinderslag. ${
+      1. **Inzwemmen** (suggestie: ongeveer 15-20% van de totale afstand): Korte warming-up oefeningen, passend bij van de focus van de training. Zorg dat alleen de volgende slagen voorkomen in het inzwemmen: (${slagVerdeling}), zonder vlinderslag. ${
       borst !== "none" ? "Start met borstcrawl" : ""
     }
-      2. **Kern 1 en Kern 2** (samen ongeveer 60-70% van de totale afstand): Kies oefeningen die passen bij de focus op ${focusTechnique}. Geef duidelijk aan welke oefeningen het zijn. 
+      2. **Kern 1 en Kern 2** (samen ongeveer 60-70% van de totale afstand): Kies oefeningen die passen bij de focus op ${focusTechnique}. ${
+      focusTechnique === "technique"
+        ? "Geef per oefening een sub-lijst met daarin:<ul><li>Doel: Doel van deze oefening</li><li>Uitvoering: Uitvoering van deze oefening</li></ul>"
+        : ""
+    }
       3. **Uitzwemmen** (suggestie: ongeveer 10-15% van de totale afstand): Rustige afsluiting met aandacht voor techniek en ontspanning, zonder vlinderslag.
       
       **Slagverdeling**: ${slagVerdeling}. Gebruik **uitsluitend** de in deze verdeling genoemde slagen.
-      
-    
-      
       ${
         schoolslag !== "none" &&
         rug !== "none" &&
@@ -89,7 +90,6 @@ export function ZwemschemaCreatorComponent() {
       - Geen wisselslag tijdens het uitzwemmen.`
           : ""
       }
-
       ${
         vlinder !== "none"
           ? `  **Vlinderslag beperkingen**:
@@ -99,22 +99,19 @@ export function ZwemschemaCreatorComponent() {
       - Geen vlinderslag tijdens het uitzwemmen.`
           : ""
       }
-      
       **Belangrijk**:
-      - Gebruik **alleen** de slagen die in de slagverdeling zijn opgenomen. Slagen die niet in de verdeling staan, mogen **niet** in het schema voorkomen.
+      - Gebruik **alleen** de slagen die in de slagverdeling zijn opgenomen. Slagen die niet in de verdeling staan, mogen **niet** in de training voorkomen.
       - Ga uit van een 25m bad, tenzij anders aangegeven.
       - Voeg been- en armenoefeningen toe aan de hoofdtraining, passend bij het niveau van de zwemmer en de focus van de training.
-      
       ${
         additionalFocus
-          ? `**Extra focus**: ${additionalFocus}. Integreer dit in de training.`
+          ? `**De zwemmer heeft aangegeven dat hij/zij extra wil trainen op: ** ${additionalFocus}. Integreer dit in de training.`
           : ""
       }
-      
       **Instructies voor de oefeningen**:
       - Geef bij elke oefening de exacte afstand en de rusttijd (5, 10, 15, 20, 25 of 30 seconden) aan.
       - Zorg ervoor dat de **afstanden van alle oefeningen samen exact ${trainingDistance} meter vormen**.
-      - Zorg voor voldoende variatie in de oefeningen.
+      - Zorg als professionele zwemcoach voor voldoende variatie in de oefeningen.
       - Pas de moeilijkheidsgraad aan het niveau van de zwemmer aan.
       - Houd rekening met de intensiteit van de slagen bij het bepalen van de rusttijden.
       

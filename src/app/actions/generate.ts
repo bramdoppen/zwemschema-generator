@@ -15,8 +15,25 @@ const workoutSchema = z.object({
           'Titel van de sectie, bijv. "Warming-up", "Hoofdset", "Uitzwemmen"'
         ),
       content: z
-        .array(z.string())
-        .describe("Lijst van oefeningen of instructies voor deze sectie"),
+        .array(
+          z.union([
+            z.string(),
+            z.object({
+              opdracht: z
+                .string()
+                .describe(
+                  "Bijvoorbeeld: 4x 50m borstcrawl, rust 15 sec elke 50 meter"
+                ),
+              doel: z.string().describe("Doel van de opdracht"),
+              uitvoering: z
+                .string()
+                .describe("Hoe de opdracht uitgevoerd moet worden"),
+            }),
+          ])
+        )
+        .describe(
+          "Lijst van oefeningen of instructies voor deze sectie, in het geval van techniektraining inclusief uitleg hoe je de oefening moet uitvoeren. Alleen de hoofdtraining bevat extra informatie met daarin: opdracht (bijv: 4x 50m borstcrawl), doel (doel van de opdracht) en uitvoering (hoe de opdracht uitgevoerd moet worden)."
+        ),
       distance: z.number().describe("Totale afstand van deze sectie in meters"),
       goal: z
         .string()

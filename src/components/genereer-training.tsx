@@ -8,7 +8,7 @@ import { track } from "@vercel/analytics/react";
 
 interface WorkoutSection {
   title: string;
-  content: string[];
+  content: (string | { opdracht: string; doel: string; uitvoering: string })[];
   distance: number;
   goal?: string;
 }
@@ -113,7 +113,21 @@ export default function GenereerTraining({ prompt }: { prompt: string }) {
             )}
             <ul className="list-disc pl-5 mt-2">
               {section.content?.map((item, itemIndex) => (
-                <li key={itemIndex}>{item}</li>
+                <li key={itemIndex}>
+                  {typeof item === "string" ? (
+                    item
+                  ) : (
+                    <div className="mb-2">
+                      <p>{item.opdracht}</p>
+                      <p className="text-sm text-gray-600">
+                        <strong>Doel:</strong> {item.doel}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        <strong>Uitvoering:</strong> {item.uitvoering}
+                      </p>
+                    </div>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
