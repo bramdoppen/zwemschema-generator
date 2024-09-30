@@ -1,6 +1,7 @@
 "use server";
 
 export const maxDuration = 30;
+export const dynamic = "force-dynamic";
 
 import { streamObject } from "ai";
 import { openai } from "@ai-sdk/openai";
