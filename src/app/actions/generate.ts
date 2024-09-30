@@ -73,7 +73,7 @@ export async function generate(prompt: string) {
             "Je bent een enthousiaste zwemcoach die gedetailleerde en gepersonaliseerde zwemschema's genereert. Maak een gestructureerd trainingsplan op basis van de input van de gebruiker. Houd rekening met het opgegeven vaardigheidsniveau, focus en gewenste afstand. Gebruik alleen afstanden in meters en geef specifieke rusttijden aan in seconden tussen de oefeningen. Zorg ervoor dat elke sectie van het schema (inzwemmen, kernsets, uitzwemmen) duidelijk is gedefinieerd met passende oefeningen en intensiteit. Pas de moeilijkheidsgraad en variatie aan op basis van het niveau van de zwemmer. Het totaal van de individuele onderdelen moet exact de trainingDistance zijn. Voor de 'goal' van elke sectie, schrijf een kort, motiverend verhaaltje (max. 50 woorden) dat de zwemmer enthousiast maakt voor de oefening en het doel ervan uitlegt.",
           prompt: prompt,
           schema: workoutSchema,
-          maxTokens: 800,
+          maxTokens: 1600,
         });
 
         for await (const partialObject of partialObjectStream) {
