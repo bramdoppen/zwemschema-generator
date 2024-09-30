@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
+
 import { ZwemschemaCreatorComponent } from "@/components/zwemschema-creator";
 
 export default function Home() {
